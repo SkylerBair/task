@@ -9,17 +9,17 @@ import (
 )
 
 // listCmd represents the list command
-var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all of your tasks.",
+var completedListCmd = &cobra.Command{
+	Use:   "completedList",
+	Short: "List all of your completed tasks.",
 	Run: func(cmd *cobra.Command, args []string) {
-		tasks, err := db.AllTasks()
+		tasks, err := db.AllCompletedTasks()
 		if err != nil {
 			fmt.Println("Something went wrong:", err.Error())
 			os.Exit(1)
 		}
 		if len(tasks) == 0 {
-			fmt.Println("You have no tasks to complete! Why not take a vacation? ")
+			fmt.Println("You have no completed tasks time to get to work! ")
 			return
 		}
 
@@ -31,5 +31,5 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.AddCommand(listCmd)
+	RootCmd.AddCommand(completedListCmd)
 }
