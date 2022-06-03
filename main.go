@@ -13,11 +13,8 @@ import (
 func main() {
 	home, _ := homedir.Dir()
 	dbPath := filepath.Join(home, "tasks.db")
-	err := db.Init(dbPath)
-	if err != nil {
-		panic(err)
-	}
-	cmd.RootCmd.Execute()
+	must(db.Init(dbPath))
+	must(cmd.RootCmd.Execute())
 }
 
 func must(err error) {
